@@ -1,0 +1,29 @@
+﻿@using WebApplication2.Models.Entities
+
+@model WebApplication2.Models.Entities.Student
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Student</legend>
+        . . . . . . . . . .
+        <p>
+        <input type ="submit" value="Save" />
+        </p>
+    </fieldset>
+    List<String> ListCourseStudent = ViewBag.LstCourseStudent;
+    List<Course> ListCourse = ViewBag.LstCourses;
+    foreach (Course item in ListCourse)
+    { 
+        <input type ="checkbox" name="selectedCourse" value="@item.CourseID" 
+               @(ListCourseStudent.Contains(item.Title) ?
+            "checked='checked'" : "") />
+ @item.Title<br />}
+}
